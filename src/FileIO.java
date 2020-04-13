@@ -4,10 +4,22 @@ import java.util.*;
 public class FileIO {
     String fileName;
     File file;
+    Scanner scanner;
 
     public FileIO(String fileName) {
         this.fileName = fileName;
         this.file = new File(fileName);
+        createFile();
+        try {
+            scanner = new Scanner(file);
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int readInt(){
+        return scanner.nextInt();
     }
 
     public void createFile() {
@@ -19,26 +31,31 @@ public class FileIO {
         }
     }
 
-    private void write(String str) {
+    public void write(String str) {
         FileWriter myWriter;
         str += "\n";
         try {
-
             myWriter = new FileWriter(fileName);
             myWriter.write(str);
             myWriter.close();
-
         }
         catch (IOException e) {
-
             e.printStackTrace();
-
         }
-
+    }
+    public void write(int num) {
+        FileWriter myWriter;
+        try {
+            myWriter = new FileWriter(fileName);
+            myWriter.write(num);
+            myWriter.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void append(String textToAppend) throws IOException {
-
         BufferedWriter writer = new BufferedWriter(
                 new FileWriter(fileName, true)  //Set true for append mode
         );
@@ -47,31 +64,15 @@ public class FileIO {
         writer.close();
     }
 
-    private boolean found(String str) {
-
-        try {
-            File myObj = new File(fileName);
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-
-                String data = myReader.nextLine();
-                //System.out.println(data);
-                //System.out.println(str);
-
-                if (data.equals(str)) {
-
-                    return true;
-                }
+    public boolean found(String str) {
+        while (scanner.hasNextLine()) {
+            String data = scanner.nextLine();
+            //System.out.println(data);
+            //System.out.println(str);
+            if (data.equals(str)) {
+                return true;
             }
-            myReader.close();
-
-        }
-        catch (FileNotFoundException e) {
-
-            e.printStackTrace();
-
         }
         return false;
-
     }
 }
