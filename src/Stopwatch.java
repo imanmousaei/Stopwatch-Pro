@@ -19,11 +19,13 @@ public class Stopwatch {
         timeUsed += now - lastLapTime;
         activityFile.write(timeUsed + "");
         start();
-        try {
-            activitiesFile.append(activity);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
+        if(!activitiesFile.found(activity)) {
+            try {
+                activitiesFile.append(activity);
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         System.out.println(activity + " -> " + secondToTimeFormat(timeUsed) );
     }

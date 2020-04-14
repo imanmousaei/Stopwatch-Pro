@@ -85,8 +85,8 @@ public class FileIO {
     }
 
     public boolean found(String str) {
-        while (scanner.hasNextLine()) {
-            String data = scanner.nextLine();
+        while (scanner.hasNext()) {
+            String data = scanner.next();
             //System.out.println(data);
             //System.out.println(str);
             if (data.equals(str)) {
