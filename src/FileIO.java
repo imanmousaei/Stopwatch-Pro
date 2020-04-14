@@ -18,6 +18,12 @@ public class FileIO {
         }
     }
 
+    public static void printTime(String activity){
+        FileIO activityFile = new FileIO("files/" + activity + ".txt");
+        int timeUsed = activityFile.readFirstInt();
+        System.out.println(activity + " -> " + Stopwatch.secondToTimeFormat(timeUsed) );
+    }
+
     public int readFirstInt(){
         Scanner reader = null;
         try {

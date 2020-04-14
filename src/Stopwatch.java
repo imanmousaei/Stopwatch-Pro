@@ -21,7 +21,7 @@ public class Stopwatch {
         System.out.println(activity + " -> " + secondToTimeFormat(timeUsed) );
     }
 
-    public String secondToTimeFormat(int second){
+    public static String secondToTimeFormat(int second){
         String timeFormat = "";
         int hour = second/3600;
         second -= hour*3600;
