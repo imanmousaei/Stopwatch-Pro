@@ -18,8 +18,21 @@ public class FileIO {
         }
     }
 
-    public int readInt(){
-        return scanner.nextInt();
+    public int readFirstInt(){
+        Scanner reader = null;
+        try {
+            reader = new Scanner(file);
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return -1;
+        }
+        if(reader.hasNextInt()) {
+            return reader.nextInt();
+        }
+        else{
+            return 0;
+        }
     }
 
     public void createFile() {
@@ -37,17 +50,6 @@ public class FileIO {
         try {
             myWriter = new FileWriter(fileName);
             myWriter.write(str);
-            myWriter.close();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public void write(int num) {
-        FileWriter myWriter;
-        try {
-            myWriter = new FileWriter(fileName);
-            myWriter.write(num);
             myWriter.close();
         }
         catch (IOException e) {
