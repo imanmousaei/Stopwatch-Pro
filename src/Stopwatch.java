@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Stopwatch {
     FileIO lastLapFile = new FileIO("files/lastLap.txt");
+    FileIO activitiesFile = new FileIO("files/activities.txt");
 
     public void start() {
         lastLapFile.write(getSystemTimeInSecond() + "");
@@ -18,6 +19,12 @@ public class Stopwatch {
         timeUsed += now - lastLapTime;
         activityFile.write(timeUsed + "");
         start();
+        try {
+            activitiesFile.append(activity);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.println(activity + " -> " + secondToTimeFormat(timeUsed) );
     }
 

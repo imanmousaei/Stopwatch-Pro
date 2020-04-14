@@ -17,9 +17,7 @@ public class Main {
                 stopwatch.lap(input);
             }
             else if (input.equals("pr")) {
-                input = cin.next();
-                input = input.toLowerCase();
-                FileIO.printTime(input);
+                FileIO.printTime();
             }
         }
 
