@@ -35,6 +35,24 @@ public class FileIO {
             System.out.println(activity + " -> " + Stopwatch.secondToTimeFormat(timeUsed));
         }
     }
+    public static void reset(){
+        Scanner reader = null;
+        File activitiesFile = new File("files/activities.txt");
+        try {
+            reader = new Scanner(activitiesFile);
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        while(reader.hasNext()) {
+            String activity = reader.next();
+            FileIO activityFile = new FileIO("files/" + activity + ".txt");
+            int timeUsed = activityFile.readFirstInt();
+            System.out.println(activity + " -> " + Stopwatch.secondToTimeFormat(timeUsed));
+            activityFile.write("0");
+        }
+    }
 
     public int readFirstInt(){
         Scanner reader = null;

@@ -19,6 +19,9 @@ public class Main {
             else if (input.equals("pr")) {
                 FileIO.printTime();
             }
+            else if (input.equals("reset")) {
+                FileIO.reset();
+            }
         }
 
     }
