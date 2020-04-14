@@ -18,7 +18,7 @@ public class Stopwatch {
         timeUsed += now - lastLapTime;
         activityFile.write(timeUsed + "");
         start();
-        System.out.println(activity + " : " + secondToTimeFormat(timeUsed) );
+        System.out.println(activity + " -> " + secondToTimeFormat(timeUsed) );
     }
 
     public String secondToTimeFormat(int second){
