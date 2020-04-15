@@ -17,6 +17,9 @@ public class Stopwatch {
         FileIO activityFile = new FileIO("files/" + activity + ".txt");
         int timeUsed = activityFile.readFirstInt();
         timeUsed += now - lastLapTime;
+        if(timeUsed<0){
+            timeUsed += 12*3600;
+        }
         activityFile.write(timeUsed + "");
         start();
         if(!activitiesFile.found(activity)) {

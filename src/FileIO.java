@@ -103,10 +103,15 @@ public class FileIO {
     }
 
     public boolean found(String str) {
-        while (scanner.hasNext()) {
-            String data = scanner.next();
-            //System.out.println(data);
-            //System.out.println(str);
+        Scanner sc = null;
+        try {
+            sc = new Scanner(file);
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        while (sc.hasNext()) {
+            String data = sc.next();
             if (data.equals(str)) {
                 return true;
             }
